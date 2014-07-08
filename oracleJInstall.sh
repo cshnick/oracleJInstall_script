@@ -25,7 +25,7 @@ wrapMessage() {
 
 DOWNLOAD_URL="$1"
 DESTINATION_DIR=/opt/java/64
-DIR_EXTRACTED=jre1.7.0_25
+DIR_EXTRACTED=jre1.7.0_60
 MOZILLA_PLUGIN_DIR=$HOME/.mozilla/plugins
 
 if [ -z $DOWNLOAD_URL ] ; then
@@ -66,9 +66,9 @@ sudo -E /usr/sbin/update-alternatives --install "/usr/bin/java" "java" "${DESTIN
 sudo -E /usr/sbin/update-alternatives --set java "${DESTINATION_DIR}/${DIR_EXTRACTED}/bin/java"
 
 wrapMessage "Installing mozilla plugin..."
-rm -v "$MOZILLA_PLUGIN_DIR/libnpjp2.so"
+sudo rm -v "$MOZILLA_PLUGIN_DIR/libnpjp2.so"
 mkdir -p -v $MOZILLA_PLUGIN_DIR
 echo "Creating plugin symlink..."
-ln -vs "${DESTINATION_DIR}/${DIR_EXTRACTED}/lib/amd64/libnpjp2.so" "$MOZILLA_PLUGIN_DIR"
+sudo ln -vs "${DESTINATION_DIR}/${DIR_EXTRACTED}/lib/amd64/libnpjp2.so" "$MOZILLA_PLUGIN_DIR"
 
 exit $EXIT_OK
